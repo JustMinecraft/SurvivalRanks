@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 
@@ -23,8 +22,11 @@ public class SurvivalRanks extends JavaPlugin {
     public void onEnable() {
         database = new SQLiteDatabase(this, new File(getDataFolder(), "survival-ranks.db"));
         database.createTables();
+        
+        saveDefaultConfig();
 
         new PointsManager(this);
+        new RanksManager(this);
         
         new RankCommand(this);
         new TopRanksCommand(this);

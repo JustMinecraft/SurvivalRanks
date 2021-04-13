@@ -1,0 +1,7 @@
+ranks:
+  Pioneer:
+    points: 0
+  Explorer:
+    points: 1000
+  Master:
+    points: 10000

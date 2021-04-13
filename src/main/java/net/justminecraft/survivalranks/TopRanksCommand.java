@@ -46,7 +46,7 @@ public class TopRanksCommand implements CommandExecutor {
             if (points.getPoints() >= 20000000)
                 score = points.getPoints() / 1000000 + "M";
 
-            sender.sendMessage(ChatColor.RED + " " + (i + 1) + ". " + points.getUsername() + " (" + score + ")");
+            sender.sendMessage(ChatColor.RED + " " + (i + 1) + ". [" + RanksManager.getRank(points.getPoints()).getTitle() + "] " + points.getUsername() + " (" + score + ")");
         }
 
         return true;
