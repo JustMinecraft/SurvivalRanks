@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -43,6 +44,11 @@ public class RanksManager implements Listener, Runnable {
                 lastRanks.put(player, rank);
             }
         }
+    }
+    
+    @EventHandler
+    public void onQuit(PlayerQuitEvent e) {
+        lastRanks.remove(e.getPlayer());
     }
     
     @EventHandler
