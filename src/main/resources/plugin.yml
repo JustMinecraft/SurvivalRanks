@@ -1,0 +1,13 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+author: PureGero
+website: https://github.com/JustMinecraft/${project.name}
+commands:
+  rank:
+    description: See your rank
+    default: true
+  topranks:
+    description: See the top ranks
+    default: true
