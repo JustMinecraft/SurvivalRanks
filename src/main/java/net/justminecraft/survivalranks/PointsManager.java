@@ -40,16 +40,8 @@ public class PointsManager implements Listener, Runnable {
     }
     
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onAchievement(PlayerAchievementAwardedEvent event) {
-        int parents = 1;
-        Achievement parent = event.getAchievement();
-        
-        while (parent.getParent() != null) {
-            parent = parent.getParent();
-            parents++;
-        }
-        
-        int points = ACHIEVEMENT_POINTS * parents;
+    public void onAchievement(PlayerAchievementAwardedEvent event) {        
+        int points = ACHIEVEMENT_POINTS;
         survivalRanks.getPoints(event.getPlayer()).incrementPoints(points);
         
         Bukkit.getScheduler().runTask(survivalRanks, () -> event.getPlayer().sendMessage(ChatColor.GREEN + " + " + points + " points"));
