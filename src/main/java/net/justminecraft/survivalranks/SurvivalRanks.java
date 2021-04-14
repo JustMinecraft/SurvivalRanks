@@ -37,6 +37,11 @@ public class SurvivalRanks extends JavaPlugin {
         getServer().getScheduler().runTaskTimerAsynchronously(this,
                 () -> Bukkit.getOnlinePlayers().forEach(this::updateRank),
                 (long) (60 * 20 + Math.random() * 100), (long) (60 * 20 + Math.random() * 100));
+        
+        if (Bukkit.getPluginManager().getPlugin("ViaVersion") != null) {
+            getLogger().info("Registering 1.16 colours using ViaVersion");
+            new NewColors();
+        }
     }
 
     private void loadPoints() {

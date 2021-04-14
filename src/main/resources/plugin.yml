@@ -4,6 +4,7 @@ description: ${project.description}
 main: ${project.groupId}.${project.name}
 author: PureGero
 website: https://github.com/JustMinecraft/${project.name}
+softdepend: [ViaVersion]
 commands:
   rank:
     description: See your rank

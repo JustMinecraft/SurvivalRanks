@@ -70,6 +70,10 @@ public class RanksManager implements Listener, Runnable {
         Collections.sort(ranks);
     }
     
+    public static Rank getRank(String rankTitle) {
+        return ranksMap.get(rankTitle);
+    }
+    
     public static Rank getRank(int points) {
         return ranks.get(binarySearch(points, ranks));
     }
@@ -110,9 +114,16 @@ public class RanksManager implements Listener, Runnable {
             return points;
         }
         
+        public String getHexColor() {
+            int color = new Random(title.hashCode()).nextInt(0x1000000);
+            return String.format("#%06X", color);
+        }
+        
         public ChatColor getChatColor() {
-            int color = new Random(title.hashCode()).nextInt(16);
-            return ChatColor.values()[color];
+            String hex = getHexColor();
+            return ColorUtil.fromRGB(Integer.parseInt(hex.substring(1, 3), 16),
+                                     Integer.parseInt(hex.substring(3, 5), 16),
+                                     Integer.parseInt(hex.substring(5, 7), 16));
         }
 
         @Override
