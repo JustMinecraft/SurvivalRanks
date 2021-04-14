@@ -24,8 +24,17 @@ public class RankCommand implements CommandExecutor {
         }
         
         Points points = survivalRanks.getPoints((Player) sender);
+        RanksManager.Rank rank = RanksManager.getRank(points.getPoints());
+        RanksManager.Rank nextRank = RanksManager.getNextRank(points.getPoints());
+
+        sender.sendMessage(ChatColor.RED + "You have " + ChatColor.BOLD + points.getPoints() + ChatColor.RED + " points.");
+        sender.sendMessage(ChatColor.DARK_RED + "You are rank " + rank.getChatColor() + "[" + rank.getTitle() + "]");
         
-        sender.sendMessage(ChatColor.DARK_RED + "You have " + ChatColor.RED + points.getPoints() + ChatColor.DARK_RED + " points.");
+        if (nextRank == null) {
+            sender.sendMessage(ChatColor.DARK_RED + "You are the final rank.");
+        } else {
+            sender.sendMessage(ChatColor.DARK_RED + "You need " + ChatColor.RED + (nextRank.getPoints() - points.getPoints()) + ChatColor.DARK_RED + " more points for the next rank.");
+        }
         
         return true;
     }

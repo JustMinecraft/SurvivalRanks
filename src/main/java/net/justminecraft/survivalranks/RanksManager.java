@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -73,9 +74,15 @@ public class RanksManager implements Listener, Runnable {
     public static Rank getRank(String rankTitle) {
         return ranksMap.get(rankTitle);
     }
-    
+
     public static Rank getRank(int points) {
         return ranks.get(binarySearch(points, ranks));
+    }
+
+    @Nullable
+    public static Rank getNextRank(int points) {
+        int i = binarySearch(points, ranks) + 1;
+        return i >= ranks.size() ? null : ranks.get(i);
     }
 
     private static int binarySearch(int points, List<Rank> list) {
