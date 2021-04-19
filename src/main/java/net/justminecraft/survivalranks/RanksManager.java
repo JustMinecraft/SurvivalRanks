@@ -61,9 +61,11 @@ public class RanksManager implements Listener, Runnable {
     }
 
     private void load(ConfigurationSection ranksSection) {
+        int rankNumber = 0;
         for (String key : ranksSection.getKeys(false)) {
+            rankNumber++;
             ConfigurationSection section = ranksSection.getConfigurationSection(key);
-            Rank rank = new Rank(key, section.getInt("points", 0));
+            Rank rank = new Rank(key, section.getInt("points", 0), rankNumber);
             ranksMap.put(key, rank);
             ranks.add(rank);
         }
@@ -107,10 +109,12 @@ public class RanksManager implements Listener, Runnable {
     public static class Rank implements Comparable<Rank> {
         private String title;
         private int points;
+        private int rankNumber;
 
-        public Rank(String title, int points) {
+        public Rank(String title, int points, int rankNumber) {
             this.title = title;
             this.points = points;
+            this.rankNumber = rankNumber;
         }
 
         public String getTitle() {
@@ -119,6 +123,10 @@ public class RanksManager implements Listener, Runnable {
 
         public int getPoints() {
             return points;
+        }
+
+        public int getRankNumber() {
+            return rankNumber;
         }
         
         public String getHexColor() {

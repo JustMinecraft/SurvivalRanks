@@ -28,7 +28,7 @@ public class RankCommand implements CommandExecutor {
         RanksManager.Rank nextRank = RanksManager.getNextRank(points.getPoints());
 
         sender.sendMessage(ChatColor.RED + "You have " + ChatColor.BOLD + points.getPoints() + ChatColor.RED + " points.");
-        sender.sendMessage(ChatColor.DARK_RED + "You are rank " + rank.getChatColor() + "[" + rank.getTitle() + "]");
+        sender.sendMessage(ChatColor.DARK_RED + "You are rank #" + rank.getRankNumber() + " " + rank.getChatColor() + "[" + rank.getTitle() + "]");
         
         if (nextRank == null) {
             sender.sendMessage(ChatColor.DARK_RED + "You are the final rank.");
