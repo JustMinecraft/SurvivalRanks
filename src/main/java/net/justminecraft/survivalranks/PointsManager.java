@@ -12,7 +12,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.player.PlayerAchievementAwardedEvent;
+import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
 import java.util.HashMap;
 
@@ -39,7 +39,7 @@ public class PointsManager implements Listener, Runnable {
     }
     
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onAchievement(PlayerAchievementAwardedEvent event) {        
+    public void onAchievement(PlayerAdvancementDoneEvent event) {
         int points = ACHIEVEMENT_POINTS;
         survivalRanks.getPoints(event.getPlayer()).incrementPoints(points);
         

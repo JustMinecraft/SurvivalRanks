@@ -39,7 +39,7 @@ public class RanksManager implements Listener, Runnable {
             if (rank != lastRank) {
                 if (lastRank != null) {
                     player.sendMessage(ChatColor.GREEN + "You have ranked up to " + rank.getChatColor() + "[" + rank.getTitle() + "]");
-                    player.getWorld().playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
+                    player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 }
                 
                 lastRanks.put(player, rank);
