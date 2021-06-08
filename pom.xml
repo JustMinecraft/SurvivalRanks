@@ -6,7 +6,7 @@
 
     <groupId>net.justminecraft.survivalranks</groupId>
     <artifactId>survival-ranks</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <description>A ranking plugin for minecraft survival</description>
     
     <name>SurvivalRanks</name>
@@ -40,9 +40,9 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>us.myles</groupId>
+            <groupId>com.viaversion</groupId>
             <artifactId>viaversion</artifactId>
-            <version>3.2.2-SNAPSHOT</version>
+            <version>4.0.0</version>
         </dependency>
     </dependencies>
 

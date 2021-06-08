@@ -1,17 +1,18 @@
 package net.justminecraft.survivalranks;
 
-import us.myles.ViaVersion.api.PacketWrapper;
-import us.myles.ViaVersion.api.protocol.Protocol;
-import us.myles.ViaVersion.api.protocol.ProtocolRegistry;
-import us.myles.ViaVersion.api.remapper.PacketRemapper;
-import us.myles.ViaVersion.api.type.Type;
-import us.myles.ViaVersion.packets.State;
-import us.myles.ViaVersion.protocols.protocol1_15to1_14_4.ClientboundPackets1_15;
-import us.myles.ViaVersion.protocols.protocol1_16to1_15_2.Protocol1_16To1_15_2;
-import us.myles.viaversion.libs.gson.JsonArray;
-import us.myles.viaversion.libs.gson.JsonElement;
-import us.myles.viaversion.libs.gson.JsonObject;
-import us.myles.viaversion.libs.gson.JsonPrimitive;
+import com.viaversion.viaversion.api.Via;
+import com.viaversion.viaversion.api.protocol.AbstractProtocol;
+import com.viaversion.viaversion.api.protocol.Protocol;
+import com.viaversion.viaversion.api.protocol.packet.PacketWrapper;
+import com.viaversion.viaversion.api.protocol.packet.State;
+import com.viaversion.viaversion.api.protocol.remapper.PacketRemapper;
+import com.viaversion.viaversion.api.type.Type;
+import com.viaversion.viaversion.protocols.protocol1_15to1_14_4.ClientboundPackets1_15;
+import com.viaversion.viaversion.protocols.protocol1_16to1_15_2.Protocol1_16To1_15_2;
+import com.viaversion.viaversion.libs.gson.JsonArray;
+import com.viaversion.viaversion.libs.gson.JsonElement;
+import com.viaversion.viaversion.libs.gson.JsonObject;
+import com.viaversion.viaversion.libs.gson.JsonPrimitive;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -21,15 +22,15 @@ import java.util.regex.Pattern;
 public class NewColors {
 
     public NewColors() {
-        Protocol protocol = ProtocolRegistry.getProtocol(Protocol1_16To1_15_2.class);
+        Protocol protocol = Via.getManager().getProtocolManager().getProtocol(Protocol1_16To1_15_2.class);
 
         try {
-            Field outgoing = Protocol.class.getDeclaredField("outgoing");
+            Field outgoing = AbstractProtocol.class.getDeclaredField("clientbound");
             outgoing.setAccessible(true);
-            Map<Protocol.Packet, Protocol.ProtocolPacket> map = (Map<Protocol.Packet, Protocol.ProtocolPacket>) outgoing.get(protocol);
-            Protocol.Packet packet = new Protocol.Packet(State.PLAY, ClientboundPackets1_15.CHAT_MESSAGE.ordinal());
-            Protocol.ProtocolPacket oldPacket = map.get(packet);
-            Protocol.ProtocolPacket newPacket = new Protocol.ProtocolPacket(oldPacket.getState(), oldPacket.getOldID(), oldPacket.getNewID(), new PacketRemapper() {
+            Map<AbstractProtocol.Packet, AbstractProtocol.ProtocolPacket> map = (Map<AbstractProtocol.Packet, AbstractProtocol.ProtocolPacket>) outgoing.get(protocol);
+            AbstractProtocol.Packet packet = new AbstractProtocol.Packet(State.PLAY, ClientboundPackets1_15.CHAT_MESSAGE.ordinal());
+            AbstractProtocol.ProtocolPacket oldPacket = map.get(packet);
+            AbstractProtocol.ProtocolPacket newPacket = new AbstractProtocol.ProtocolPacket(oldPacket.getState(), oldPacket.getOldID(), oldPacket.getNewID(), new PacketRemapper() {
                 @Override
                 public void registerMap() {
                     handler(wrapper -> {
